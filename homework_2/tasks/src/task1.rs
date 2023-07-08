@@ -17,7 +17,17 @@ fn main() {
 }
 
 fn find_term(search_term: &str, quote: &str) -> String {
-    todo!()
+    let mut num = 1;
+    let mut result_line = "";
+    for line in quote.split('\n'){
+        let location = line.find(search_term);
+        if let Some(_) = location{
+            result_line = line;
+            break;
+        }
+        num += 1;
+    }
+    String::from(format!("{}: {}", num, result_line))
 }
 
 
