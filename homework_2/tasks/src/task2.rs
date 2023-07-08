@@ -9,30 +9,39 @@
 
  */
 
-fn main() {}
+ fn main() {}
 
-struct Rect {
-    top_left: (f32, f32),
-    width: f32,
-}
+ struct Rect {
+     x: f32,
+     y: f32,
+     width: f32
+ }
+ 
+ impl Rect {
+     fn new(top_left: (f32, f32), width: f32) -> Self {
+         Self {
+             x: top_left.0,
+             y: top_left.1,
+             width: width
+         }
+     }
+ 
+     fn bottom_right(&self) -> (f32, f32) {
+         let x_right = &self.x + &self.width;
+         let y_right = &self.y - &self.width;
+         (x_right, y_right)
+     }
+ 
+     fn area(&self) -> f32 {
+         &self.width * &self.width
+     }
+ 
+     fn perimeter(&self) -> f32 {
+         let four: f32 = 4.0;
+         &self.width * four
+     }
+ }
 
-impl Rect {
-    fn new(top_left: (f32, f32), width: f32) -> Self {
-        Self { top_left, width }
-    }
-
-    fn bottom_right(&self) -> (f32, f32) {
-        (self.top_left.0 + self.width, self.top_left.1 - self.width)
-    }
-
-    fn area(&self) -> f32 {
-        self.width * self.width
-    }
-
-    fn perimeter(&self) -> f32 {
-        self.width * 4.
-    }
-}
 
 
 // ----> TESTS
